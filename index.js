@@ -1,10 +1,11 @@
-const { Client, Collection, GatewayIntentBits, Partials  } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
 
 const pino = require('pino')
 const pretty = require('pino-pretty')
 
 require('dotenv').config()
 
+const i18n = require('./Structure/i18n.js')
 const Handler = require('./Structure/handler.js');
 const Slash = require('./Structure/slash.js')
 
@@ -20,6 +21,7 @@ class App extends Client {
         });
 
         this.logger = pino(pretty())
+        this.i18n = i18n()
 
         process
             .on('unhandledRejection', error => {
@@ -50,7 +52,8 @@ class App extends Client {
         this.slash = new Slash(this);
 
         const handlers = new Handler(this);
-        await handlers.commands(); handlers.events();
+        await handlers.commands();
+        handlers.events();
     }
 }
 

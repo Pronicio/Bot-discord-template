@@ -1,0 +1,1 @@
+ping: "Pong ! Bot's latency : **{{latency}}ms**"

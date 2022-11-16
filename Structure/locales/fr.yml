@@ -1,0 +1,1 @@
+ping: "Pong ! La latence du robot est de : **{{latency}}ms**"

@@ -6,6 +6,8 @@ module.exports = {
         .setName('ping')
         .setDescription('Basic command to ping the bot.'),
     async execute(client, interaction) {
-        await interaction.reply(`Pong ! Bot's latency : **${Math.round(client.ws.ping)}ms**`);
+        await interaction.reply(client.i18n.__({
+            phrase: 'ping', locale: 'fr' //or 'en'
+        }, { latency: Math.round(client.ws.ping) }));
     },
 };
