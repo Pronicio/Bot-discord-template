@@ -5,6 +5,7 @@ const pretty = require('pino-pretty')
 
 require('dotenv').config()
 
+const utils = require('./Structure/utils.js')
 const i18n = require('./Structure/i18n.js')
 const Handler = require('./Structure/handler.js');
 const Slash = require('./Structure/slash.js')
@@ -22,6 +23,8 @@ class App extends Client {
 
         this.logger = pino(pretty())
         this.i18n = i18n()
+
+        utils(this)
 
         process
             .on('unhandledRejection', error => {
